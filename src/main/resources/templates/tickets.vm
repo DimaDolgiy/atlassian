@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Tickets list</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <meta name="decorator" content="atl.general">
+    </head>
+
+    <body class="page-type-admin">
+
+
+    <h3> Tickets</h3>
+    <button type="button" id="delete_contact" class="aui-button aui-button-primary">Delete</button>
+        <table class="aui aui-table-sortable">
+            <thead>
+            <tr>
+                <th class="aui-table-column-issue-key">Key</th>
+                <th>Name</th>
+                <th>Description</th>
+            <tr>
+            </thead>
+            <tbody>
+            #foreach($ticket in $tickets)
+            <tr>
+                <td><input type="checkbox" name="toDelete[]" value="$ticket.getId()" id="chekbox_$ticket.getId()"/></td>
+                <td>$ticket.getName()</td>
+                <td>$ticket.getDescription()</td>
+            #end
+            </tr>
+            </tbody>
+        </table>
+
+    <script>
+        $('#delete_contact').click(function(){
+            $("table input[type='checkbox']:checked").parent().parent().remove();
+        });
+    </script>
+    </body>
+</html>
